@@ -280,23 +280,6 @@ class AntiFraud:
             self.report = "Unverified \t Reason: Payment %s has expired, between users %s and %s" % \
                      (self.amount, self.user1, self.user2)
         
-        
-        
-        '''
-        # Step 4: Generate SuspiciousPaymentsReport:
-        # --------------------------------------------------------------
-        if not active:
-            self.report = "Unverified \t Reason: Payment %s has expired, between users %s and %s" % \
-                     (self.amount, self.user1, self.user2)
-        elif suspicious:
-            self.report = "Unverified \t Reason: Payment %s was suspicious, between users %s and %s" % \
-                     (self.amount, self.user1, self.user2)
-        elif exceeded:
-            self.report = "Unverified \t Reason: Payment %s has exceeded maximum payment, between users %s and %s " % \
-                     (self.amount, self.user1, self.user2)
-        else:
-            self.report = self.status
-        '''
 
 # ----------------------------------------------------
 #       Main method :
