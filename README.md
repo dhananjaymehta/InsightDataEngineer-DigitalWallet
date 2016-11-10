@@ -205,7 +205,7 @@ Test cases have been written under `insight_testsuite/tests`.
 **Result :**
 Each transaction once identified will be written into four files. `Output1.txt`, `Output2.txt` and `Output3.txt` these files are named after each core feature implemented. `Output4.txt` will generate results for new features.
  
-** Exception Handling :** Following exceptions have been taken care of : 
+**Exception Handling :** Following exceptions have been taken care of : 
 1. Invalid input Records (IndexError) : when record from `batch_payment` or `stream_payment` files is in incorrect format.
 2. Invalid values of input fields (ValueError) : when field from `batch_payment` or `stream_payment` record has invalid value.
 
