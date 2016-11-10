@@ -136,10 +136,10 @@ class AntiFraud:
         # check if user2 appears in Trusted users
         if self.user2 in users_trusted:
             # payment is trusted
-            self.status = users_trusted[self.user2]
+            self.status = "trusted"
         else:
             # payment is unverified
-            self.status = 5
+            self.status = "unverified"
 
     def parse_row(self, row):
         """
@@ -231,30 +231,12 @@ class AntiFraud:
                     # -----------------------------------------------
                     # STAGE 3: Write Status to output files.
                     # -----------------------------------------------
-                    # Output1.txt : Feature 1, 1st degree of connection
-                    if self.status == 1:
-                        outputF1.write("trusted \n")
-                        outputF2.write("trusted \n")
-                        outputF3.write("trusted \n")
-                    
-                    # Output2.txt : Feature 2, 1st and 2nd degree connection
-                    elif self.status == 2:
-                        outputF1.write("unverified \n")
-                        outputF2.write("trusted \n")
-                        outputF3.write("trusted \n")
-                    
-                    # Output3.txt : Feature 3, at most 4th degree of connection
-                    elif self.status < 5:
-                        outputF1.write("unverified \n")
-                        outputF2.write("unverified \n")
-                        outputF3.write("trusted \n")
-                    
-                    # If none of features match.
-                    else:
-                        outputF1.write("unverified" + "\n")
-                        outputF2.write("unverified" + "\n")
-                        outputF3.write("unverified" + "\n")
-                    
+                    # Output1.txt
+                    outputF1.write(self.status+"\n")
+                    # Output2.txt
+                    outputF2.write(self.status+"\n")
+                    # Output3.txt
+                    outputF3.write(self.status+"\n")
                     # Output4.txt
                     outputF4.write(self.report+"\n")
 
@@ -288,10 +270,8 @@ class AntiFraud:
                      (self.amount, self.user1, self.user2)
                 
                 else:
-                    if self.status < 5: 
-                        self.report = "trusted"   
-                    else:
-                        self.report = "unverified"
+                    self.report = self.status     
+            
             else:
                 self.report = "Unverified \t Reason: Payment %s has exceeded maximum payment, between users %s and %s" % \
                      (self.amount, self.user1, self.user2)
@@ -299,6 +279,7 @@ class AntiFraud:
         else:
             self.report = "Unverified \t Reason: Payment %s has expired, between users %s and %s" % \
                      (self.amount, self.user1, self.user2)
+        
 
 # ----------------------------------------------------
 #       Main method :
